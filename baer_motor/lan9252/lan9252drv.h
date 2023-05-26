@@ -19,6 +19,7 @@
 #define TOT_BYTE_NUM_ROUND_IN	100
                                                         
 #define SEC_BYTE_NUM_IN  (CUST_BYTE_NUM_IN - 64)   // number of bytes of the second transfer
+
   
 #if ((SEC_BYTE_NUM_IN & 0x03) != 0x00)            // number of bytes of the second transfer
 	#define SEC_BYTE_NUM_ROUND_IN  ((SEC_BYTE_NUM_IN | 0x03) + 1)  
@@ -27,11 +28,26 @@
 #endif                                            //
 
 #define SEC_LONG_NUM_IN  SEC_BYTE_NUM_ROUND_IN/4  // number of long of the second transfer
-
 #define FST_BYTE_NUM_IN  64                       // number of bytes of the first transfer     
 #define FST_BYTE_NUM_ROUND_IN  64                 // number of bytes of the first transfer
                                                   // rounded to 4 (long)
 #define FST_LONG_NUM_IN  20                       // number of long of the second transfer
+
+#define SEC_BYTE_NUM_OUT  (CUST_BYTE_NUM_OUT - 64)   // number of bytes of the second transfer
+
+  
+#if ((SEC_BYTE_NUM_OUT & 0x03) != 0x00)            // number of bytes of the second transfer
+#define SEC_BYTE_NUM_ROUND_OUT  ((SEC_BYTE_NUM_OUT | 0x03) + 1)  
+#else                                             // rounded to 4 (long)
+#define SEC_BYTE_NUM_ROUND_OUT  SEC_BYTE_NUM_OUT  //
+#endif                                            //
+
+#define SEC_LONG_NUM_OUT  SEC_BYTE_NUM_ROUND_OUT/4  // number of long of the second transfer
+#define FST_BYTE_NUM_OUT  64                       // number of bytes of the first transfer     
+#define FST_BYTE_NUM_ROUND_OUT  64                 // number of bytes of the first transfer
+                                                  // rounded to 4 (long)
+#define FST_LONG_NUM_OUT  20                       // number of long of the second transfer
+
 
 #define SPI_TIMEOUT_MAX				0x1000
 #define CMD_LENGTH					((uint16_t)0x0004)
