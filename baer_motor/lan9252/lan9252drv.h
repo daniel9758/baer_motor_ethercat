@@ -6,11 +6,17 @@
 #include <string.h>
 #include "stm32h7xx_hal.h"
 
+/*
 #define CUST_BYTE_NUM_OUT	64
 #define CUST_BYTE_NUM_IN	84
 #define TOT_BYTE_NUM_ROUND_OUT	64
 #define TOT_BYTE_NUM_ROUND_IN	84
+*/
 
+#define CUST_BYTE_NUM_OUT	80
+#define CUST_BYTE_NUM_IN	100
+#define TOT_BYTE_NUM_ROUND_OUT	80
+#define TOT_BYTE_NUM_ROUND_IN	100
                                                         
 #define SEC_BYTE_NUM_IN  (CUST_BYTE_NUM_IN - 64)   // number of bytes of the second transfer
   
@@ -98,6 +104,8 @@ typedef union												//---- output buffer ----
 		uint64_t    motor_4;
 		uint64_t    motor_5;
 		uint64_t    motor_6;
+		uint64_t    motor_7;
+		uint64_t    motor_8;
 		uint32_t    test_word;
 		uint16_t    control_word;
 		uint16_t    motor_enable;
@@ -117,6 +125,8 @@ typedef union												//---- input buffer ----
 		uint64_t    motor_4;
 		uint64_t    motor_5;
 		uint64_t    motor_6;
+		uint64_t    motor_7;
+		uint64_t    motor_8;
 		uint64_t    test_word_byte_8;
 		uint32_t    can1_error_log;
 		uint32_t    can2_error_log;

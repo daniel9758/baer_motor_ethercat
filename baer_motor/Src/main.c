@@ -62,10 +62,12 @@ UART_HandleTypeDef huart2;
 FDCAN_TxHeaderTypeDef joint_1;
 FDCAN_TxHeaderTypeDef joint_2;
 FDCAN_TxHeaderTypeDef joint_3;
-// joint 4-6 in can2
 FDCAN_TxHeaderTypeDef joint_4;
+// joint 4-6 in can2
 FDCAN_TxHeaderTypeDef joint_5;
 FDCAN_TxHeaderTypeDef joint_6;
+FDCAN_TxHeaderTypeDef joint_7;
+FDCAN_TxHeaderTypeDef joint_8;
 
 FDCAN_TxHeaderTypeDef joint_encoder;
 
@@ -77,9 +79,11 @@ uint8_t joint_3_data[8];
 uint8_t joint_4_data[8];
 uint8_t joint_5_data[8];
 uint8_t joint_6_data[8];
+uint8_t joint_7_data[8];
+uint8_t joint_8_data[8];
 uint8_t joint_encoder_data[8];
 
-uint64_t joint_r_data[6];
+uint64_t joint_r_data[8];
 
 FDCAN_RxHeaderTypeDef rx_header;
 uint8_t rx_data[8];
@@ -119,15 +123,15 @@ void delay_us(uint16_t us)
 	while (__HAL_TIM_GET_COUNTER(&htim4) < us) ;
 }
 
-void unpack_reply(FDCAN_RxHeaderTypeDef *pRxHeader, uint8_t *data)
+void unpack_reply(FDCAN_RxHeaderTypeDef *pRxHeader, uint8_t *data)  
 {
 	//TODO 
-	if (pRxHeader->DataLength == FDCAN_DLC_BYTES_6)
+	if (pRxHeader->DataLength == FDCAN_DLC_BYTES_8)
 	{
 		int id = data[0] & 0xF;
-		if (id > 0 && id < 7)
+		if (id > 0 && id < 8)
 		{
-			for (size_t i = 0; i < 6; i++)
+			for (size_t i = 0; i < 8; i++)
 			{
 				byte_8_reply.buffer[i] = data[i];
 			}
@@ -136,27 +140,6 @@ void unpack_reply(FDCAN_RxHeaderTypeDef *pRxHeader, uint8_t *data)
 			reply_hs[id - 1] = hs_;
 		}
 	}
-	else if (pRxHeader->DataLength == FDCAN_DLC_BYTES_5)
-	{
-		int id = data[4];
-		if (id > 0 && id < 7)
-		{
-			for (size_t i = 0; i < 5; i++)
-			{
-				byte_8_reply.buffer[i] = data[i];
-			}
-			
-			for (size_t i = 5; i < 8; i++)
-			{
-				byte_8_reply.buffer[i] = 0;
-			}
-			
-			
-			joint_r_data[id - 1] = byte_8_reply.udata;
-			reply_hs[id - 1] = hs_;
-		}
-	}
-	
 }
 
 /* USER CODE END PFP */
@@ -309,6 +292,26 @@ int main(void)
 	joint_5.MessageMarker = 0;
 	
 	joint_6.Identifier = 0x6;
+	joint_6.IdType = FDCAN_STANDARD_ID;
+	joint_6.TxFrameType = FDCAN_DATA_FRAME;
+	joint_6.DataLength = FDCAN_DLC_BYTES_8;
+	joint_6.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+	joint_6.BitRateSwitch = FDCAN_BRS_OFF;
+	joint_6.FDFormat = FDCAN_CLASSIC_CAN;
+	joint_6.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+	joint_6.MessageMarker = 0;
+
+  joint_6.Identifier = 0x7;
+	joint_6.IdType = FDCAN_STANDARD_ID;
+	joint_6.TxFrameType = FDCAN_DATA_FRAME;
+	joint_6.DataLength = FDCAN_DLC_BYTES_8;
+	joint_6.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+	joint_6.BitRateSwitch = FDCAN_BRS_OFF;
+	joint_6.FDFormat = FDCAN_CLASSIC_CAN;
+	joint_6.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+	joint_6.MessageMarker = 0;
+
+  joint_6.Identifier = 0x8;
 	joint_6.IdType = FDCAN_STANDARD_ID;
 	joint_6.TxFrameType = FDCAN_DATA_FRAME;
 	joint_6.DataLength = FDCAN_DLC_BYTES_8;
@@ -826,7 +829,7 @@ void send_to_all_slave()
 		can1_error_counter += 1;
 	}
 		
-	if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_4, joint_4_data) != HAL_OK)
+	if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &joint_4, joint_4_data) != HAL_OK)
 	{
 		can2_error_counter += 1;
 	}
@@ -840,18 +843,28 @@ void send_to_all_slave()
 	{
 		can2_error_counter += 1;
 	}
+
+  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_7, joint_6_data) != HAL_OK)
+	{
+		can2_error_counter += 1;
+	}
+
+  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_8, joint_6_data) != HAL_OK)
+	{
+		can2_error_counter += 1;
+	}
 }
 
 void send_to_joint(int joint_no)
 {
-	if (joint_no == 1 || joint_no == 2 || joint_no == 3)
+	if (joint_no == 1 || joint_no == 2 || joint_no == 3 || joint_no == 4 )
 	{
 		if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &joint_encoder, joint_encoder_data) != HAL_OK)
 		{
 			can1_error_counter += 1;
 		}
 	}
-	else if (joint_no == 4 || joint_no == 5 || joint_no == 6)
+	else if (joint_no == 5 || joint_no == 6 || joint_no == 7 ||joint_no ==8 )
 	{
 		if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_encoder, joint_encoder_data) != HAL_OK)
 		{
@@ -897,6 +910,18 @@ void pack_motor_data()
 	{
 		joint_6_data[i] = byte_8.buffer[i];
 	}
+
+  byte_8.udata = BufferOut.Cust.motor_7;
+	for (size_t i = 0; i < 8; i++)
+	{
+		joint_7_data[i] = byte_8.buffer[i];
+	}
+  
+  byte_8.udata = BufferOut.Cust.motor_8;
+	for (size_t i = 0; i < 8; i++)
+	{
+		joint_8_data[i] = byte_8.buffer[i];
+	}
 }
 
 void control()
@@ -919,6 +944,10 @@ void control()
 		send_to_joint(5);
 		motor_encoder_val(&joint_encoder, joint_encoder_data, 6);
 		send_to_joint(6);
+    motor_encoder_val(&joint_encoder, joint_encoder_data, 7);
+		send_to_joint(7);
+    motor_encoder_val(&joint_encoder, joint_encoder_data, 8);
+		send_to_joint(8);
 	}
 	
 	if (control_word == 2 && is_enable == 1)
@@ -931,6 +960,8 @@ void control()
 		motor_disable(&joint_4, joint_4_data);
 		motor_disable(&joint_5, joint_5_data);
 		motor_disable(&joint_6, joint_6_data);
+    motor_disable(&joint_7, joint_7_data);
+    motor_disable(&joint_8, joint_8_data);
 		
 		send_to_all_slave();
 		
@@ -944,7 +975,8 @@ void control()
 		motor_enable(&joint_4, joint_4_data);
 		motor_enable(&joint_5, joint_5_data);
 		motor_enable(&joint_6, joint_6_data);
-		
+		motor_enable(&joint_7, joint_7_data);
+    motor_enable(&joint_8, joint_8_data);
 		send_to_all_slave();
 		
 		is_enable = 1;
@@ -977,11 +1009,11 @@ void control()
 
 uint16_t get_motor_status()
 {
-	int motor_msg[6];
+	int motor_msg[8];
 	
 	uint16_t motor_status_ = 0;
 	
-	for (size_t i = 0; i < 6; i++)
+	for (size_t i = 0; i < 8; i++)
 	{
 		if ((reply_hs[i] + 10) < hs_)
 		{
@@ -1006,7 +1038,9 @@ void pack_ethercat_data()
 	BufferIn.Cust.motor_4 = joint_r_data[3];
 	BufferIn.Cust.motor_5 = joint_r_data[4];
 	BufferIn.Cust.motor_6 = joint_r_data[5];
-	
+	BufferIn.Cust.motor_7 = joint_r_data[6];
+	BufferIn.Cust.motor_8 = joint_r_data[7];
+
 	BufferIn.Cust.can1_error_log = can1_error_counter;
 	BufferIn.Cust.can2_error_log = can2_error_counter;
 	
