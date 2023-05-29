@@ -62,3 +62,48 @@ java.io.FileNotFoundException: C:\Users\Danie\Desktop\baer_motor_ethercat\baer_m
 
 !ENTRY org.eclipse.cdt.core 1 0 2023-05-25 17:00:12.908
 !MESSAGE Indexed 'baer_motor' (31 sources, 117 headers) in 2.94 sec: 14,826 declarations; 103,957 references; 3 unresolved inclusions; 46 syntax errors; 171 unresolved names (0.14%)
+!SESSION 2023-05-26 15:14:23.804 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-05-26 15:15:00.889
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-05-26 15:15:00.930
+!MESSAGE Log4j initialized with config file C:\Users\Danie\Desktop\baer_motor_ethercat\.metadata\.log4j.xml
+
+!ENTRY org.eclipse.core.net 1 0 2023-05-26 15:15:04.351
+!MESSAGE System property http.proxyHost is set to 127.0.0.1 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-05-26 15:15:04.351
+!MESSAGE System property http.proxyPort is set to 7890 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-05-26 15:15:04.352
+!MESSAGE System property https.proxyHost is set to 127.0.0.1 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-05-26 15:15:04.352
+!MESSAGE System property https.proxyPort is set to 7890 but should not be set.
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-05-26 15:15:14.582
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.dsf.gdb.ui 4 5012 2023-05-26 17:12:51.698
+!MESSAGE Terminate failed
+!SUBENTRY 1 org.eclipse.debug.core 4 5010 2023-05-26 17:12:51.698
+!MESSAGE Terminate failed
+
+!ENTRY org.eclipse.cdt.dsf.gdb.ui 4 5012 2023-05-26 17:12:51.698
+!MESSAGE Terminate failed
+!SUBENTRY 1 org.eclipse.debug.core 4 5010 2023-05-26 17:12:51.698
+!MESSAGE Terminate failed
+
+!ENTRY org.eclipse.cdt.dsf 4 10005 2023-05-26 17:13:10.377
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.gdb.internal.ui.actions.DsfTerminateCommand$3$1@4474623): Status OK: unknown code=0 OK' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.cdt.dsf.gdb.ui 4 5012 2023-05-26 17:36:45.493
+!MESSAGE Terminate failed
+!SUBENTRY 1 org.eclipse.debug.core 4 5010 2023-05-26 17:36:45.493
+!MESSAGE Terminate failed

@@ -301,25 +301,25 @@ int main(void)
 	joint_6.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
 	joint_6.MessageMarker = 0;
 
-  joint_6.Identifier = 0x7;
-	joint_6.IdType = FDCAN_STANDARD_ID;
-	joint_6.TxFrameType = FDCAN_DATA_FRAME;
-	joint_6.DataLength = FDCAN_DLC_BYTES_8;
-	joint_6.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
-	joint_6.BitRateSwitch = FDCAN_BRS_OFF;
-	joint_6.FDFormat = FDCAN_CLASSIC_CAN;
-	joint_6.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
-	joint_6.MessageMarker = 0;
+  joint_7.Identifier = 0x7;
+	joint_7.IdType = FDCAN_STANDARD_ID;
+	joint_7.TxFrameType = FDCAN_DATA_FRAME;
+	joint_7.DataLength = FDCAN_DLC_BYTES_8;
+	joint_7.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+	joint_7.BitRateSwitch = FDCAN_BRS_OFF;
+	joint_7.FDFormat = FDCAN_CLASSIC_CAN;
+	joint_7.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+	joint_7.MessageMarker = 0;
 
-  joint_6.Identifier = 0x8;
-	joint_6.IdType = FDCAN_STANDARD_ID;
-	joint_6.TxFrameType = FDCAN_DATA_FRAME;
-	joint_6.DataLength = FDCAN_DLC_BYTES_8;
-	joint_6.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
-	joint_6.BitRateSwitch = FDCAN_BRS_OFF;
-	joint_6.FDFormat = FDCAN_CLASSIC_CAN;
-	joint_6.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
-	joint_6.MessageMarker = 0;
+  joint_8.Identifier = 0x8;
+	joint_8.IdType = FDCAN_STANDARD_ID;
+	joint_8.TxFrameType = FDCAN_DATA_FRAME;
+	joint_8.DataLength = FDCAN_DLC_BYTES_8;
+	joint_8.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
+	joint_8.BitRateSwitch = FDCAN_BRS_OFF;
+	joint_8.FDFormat = FDCAN_CLASSIC_CAN;
+	joint_8.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
+	joint_8.MessageMarker = 0;
 	
 	joint_encoder.Identifier = 0x7FF;
 	joint_encoder.IdType = FDCAN_STANDARD_ID;
@@ -844,12 +844,12 @@ void send_to_all_slave()
 		can2_error_counter += 1;
 	}
 
-  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_7, joint_6_data) != HAL_OK)
+  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_7, joint_7_data) != HAL_OK)
 	{
 		can2_error_counter += 1;
 	}
 
-  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_8, joint_6_data) != HAL_OK)
+  if (HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan2, &joint_8, joint_8_data) != HAL_OK)
 	{
 		can2_error_counter += 1;
 	}
