@@ -159,6 +159,19 @@ void motor_enable(FDCAN_TxHeaderTypeDef* joint_tx, uint8_t* data_buffer)
 	data_buffer[7] = 0xfc;
 }
 
+void speed_enable(FDCAN_TxHeaderTypeDef* joint_tx, uint8_t* data_buffer)
+{
+	joint_tx->DataLength = FDCAN_DLC_BYTES_8;
+	data_buffer[0] = 0xff;
+	data_buffer[1] = 0xff;
+	data_buffer[2] = 0xff;
+	data_buffer[3] = 0xff;
+	data_buffer[4] = 0xff;
+	data_buffer[5] = 0xff;
+	data_buffer[6] = 0xff;
+	data_buffer[7] = 0xfb;
+}
+
 void motor_zero(FDCAN_TxHeaderTypeDef* joint_tx, uint8_t* data_buffer)
 {
 	joint_tx->DataLength = FDCAN_DLC_BYTES_8;
@@ -970,13 +983,13 @@ void control()
 	{
 		// send enable cmd
 		motor_enable(&joint_1, joint_1_data);
-		motor_enable(&joint_2, joint_2_data);
+		speed_enable(&joint_2, joint_2_data);
 		motor_enable(&joint_3, joint_3_data);
-		motor_enable(&joint_4, joint_4_data);
+		speed_enable(&joint_4, joint_4_data);
 		motor_enable(&joint_5, joint_5_data);
-		motor_enable(&joint_6, joint_6_data);
+		speed_enable(&joint_6, joint_6_data);
 		motor_enable(&joint_7, joint_7_data);
-    motor_enable(&joint_8, joint_8_data);
+		speed_enable(&joint_8, joint_8_data);
 		send_to_all_slave();
 		
 		is_enable = 1;
