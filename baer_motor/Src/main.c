@@ -181,8 +181,8 @@ void motor_zero(FDCAN_TxHeaderTypeDef* joint_tx, uint8_t* data_buffer)
 	data_buffer[3] = 0xff;
 	data_buffer[4] = 0xff;
 	data_buffer[5] = 0xff;
-	data_buffer[6] = 0xff;
-	data_buffer[7] = 0xfe;
+	data_buffer[6] = 0xf1;
+	data_buffer[7] = 0x00;
 }
 
 void motor_disable(FDCAN_TxHeaderTypeDef* joint_tx, uint8_t* data_buffer)
@@ -294,7 +294,7 @@ int main(void)
 	joint_4.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
 	joint_4.MessageMarker = 0;
 	
-	joint_5.Identifier = 0x5;
+	joint_5.Identifier = 0x1;
 	joint_5.IdType = FDCAN_STANDARD_ID;
 	joint_5.TxFrameType = FDCAN_DATA_FRAME;
 	joint_5.DataLength = FDCAN_DLC_BYTES_8;
@@ -304,7 +304,7 @@ int main(void)
 	joint_5.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
 	joint_5.MessageMarker = 0;
 	
-	joint_6.Identifier = 0x6;
+	joint_6.Identifier = 0x2;
 	joint_6.IdType = FDCAN_STANDARD_ID;
 	joint_6.TxFrameType = FDCAN_DATA_FRAME;
 	joint_6.DataLength = FDCAN_DLC_BYTES_8;
@@ -314,7 +314,7 @@ int main(void)
 	joint_6.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
 	joint_6.MessageMarker = 0;
 
-  joint_7.Identifier = 0x7;
+  joint_7.Identifier = 0x3;
 	joint_7.IdType = FDCAN_STANDARD_ID;
 	joint_7.TxFrameType = FDCAN_DATA_FRAME;
 	joint_7.DataLength = FDCAN_DLC_BYTES_8;
@@ -324,7 +324,7 @@ int main(void)
 	joint_7.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
 	joint_7.MessageMarker = 0;
 
-  joint_8.Identifier = 0x8;
+  joint_8.Identifier = 0x4;
 	joint_8.IdType = FDCAN_STANDARD_ID;
 	joint_8.TxFrameType = FDCAN_DATA_FRAME;
 	joint_8.DataLength = FDCAN_DLC_BYTES_8;
@@ -957,13 +957,15 @@ void control()
 		send_to_joint(5);
 		motor_encoder_val(&joint_encoder, joint_encoder_data, 6);
 		send_to_joint(6);
-    motor_encoder_val(&joint_encoder, joint_encoder_data, 7);
+		motor_encoder_val(&joint_encoder, joint_encoder_data, 7);
 		send_to_joint(7);
-    motor_encoder_val(&joint_encoder, joint_encoder_data, 8);
+		motor_encoder_val(&joint_encoder, joint_encoder_data, 8);
 		send_to_joint(8);
 	}
 	
-	if (control_word == 2 && is_enable == 1)
+	//if (control_word == 2 && is_enable == 1)
+		if (control_word == 2 )
+
 	{
 		//safe torque off
 		//TODO:
@@ -973,13 +975,26 @@ void control()
 		motor_disable(&joint_4, joint_4_data);
 		motor_disable(&joint_5, joint_5_data);
 		motor_disable(&joint_6, joint_6_data);
-    motor_disable(&joint_7, joint_7_data);
-    motor_disable(&joint_8, joint_8_data);
+		motor_disable(&joint_7, joint_7_data);
+		motor_disable(&joint_8, joint_8_data);
 		
 		send_to_all_slave();
 		
 	}
+
+		if (control_word == 1 && motor_init_state ==0 )
+		{
+			motor_zero(&joint_1, joint_1_data);
+			motor_zero(&joint_3, joint_3_data);
+			motor_zero(&joint_5, joint_5_data);
+			motor_zero(&joint_7, joint_7_data);
+			send_to_all_slave();
+			motor_init_state = 1;
+		}
+
 	if (control_word == 1 && is_enable == 0)
+	//	if (control_word == 1)
+
 	{
 		// send enable cmd
 		motor_enable(&joint_1, joint_1_data);
@@ -993,31 +1008,22 @@ void control()
 		send_to_all_slave();
 		
 		is_enable = 1;
-		motor_init_state = 1;
-		is_init = 1;
+		//motor_init_state = 1;
+		//is_init = 1;
 	}
 	if (is_init)
 	{
 		return;
 	}
 	
-	if (motor_init_state == 1)
-	{
-		/*motor_zero(&joint_1, joint_1_data);
-		motor_zero(&joint_2, joint_2_data);
-		motor_zero(&joint_3, joint_3_data);
-		motor_zero(&joint_4, joint_4_data);
-		motor_zero(&joint_5, joint_5_data);
-		motor_zero(&joint_6, joint_6_data);
-		send_to_all_slave();*/
-		motor_init_state = 0;
-	}
+
 	
-	if (control_word == 1 && is_enable)
+	if (control_word == 1 && is_enable == 1 && motor_init_state == 1)
 	{
 		pack_motor_data();
 		send_to_all_slave();
 	}
+
 }
 
 uint16_t get_motor_status()

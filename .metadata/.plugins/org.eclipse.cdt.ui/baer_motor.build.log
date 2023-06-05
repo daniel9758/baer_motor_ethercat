@@ -1,10 +1,10 @@
-15:02:42 **** Incremental Build of configuration Debug for project baer_motor ****
+18:25:05 **** Incremental Build of configuration Debug for project baer_motor ****
 make -j16 all 
 arm-none-eabi-size   baer_motor.elf 
    text	   data	    bss	    dec	    hex	filename
-  38988	    124	   3240	  42352	   a570	baer_motor.elf
+  39144	    124	   3240	  42508	   a60c	baer_motor.elf
 Finished building: default.size.stdout
  
 
-15:02:43 Build Finished. 0 errors, 0 warnings. (took 418ms)
+18:25:06 Build Finished. 0 errors, 0 warnings. (took 404ms)
 
