@@ -608,3 +608,60 @@ arm-none-eabi-size   baer_motor.elf
   39144	    124	   3240	  42508	   a60c	baer_motor.elf
 Finished building: default.size.stdout
  
+10:33:17 **** Incremental Build of configuration Debug for project baer_motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H743xx -c -I../Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Danie/Desktop/SRI-embedded/LAN_9252 to H7/baer_motor_ethercat/baer_motor/lan9252" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c: In function 'get_motor_status':
+../Src/main.c:1034:6: warning: variable 'motor_msg' set but not used [-Wunused-but-set-variable]
+ 1034 |  int motor_msg[8];
+      |      ^~~~~~~~~
+arm-none-eabi-gcc -o "baer_motor.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Danie\Desktop\SRI-embedded\LAN_9252 to H7\baer_motor_ethercat\baer_motor\STM32H743VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="baer_motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: baer_motor.elf
+ 
+arm-none-eabi-size   baer_motor.elf 
+arm-none-eabi-objdump -h -S  baer_motor.elf  > "baer_motor.list"
+   text	   data	    bss	    dec	    hex	filename
+  39168	    124	   3240	  42532	   a624	baer_motor.elf
+Finished building: default.size.stdout
+ 
+Finished building: baer_motor.list
+ 
+10:33:41 **** Incremental Build of configuration Debug for project baer_motor ****
+make -j16 all 
+arm-none-eabi-size   baer_motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  39168	    124	   3240	  42532	   a624	baer_motor.elf
+Finished building: default.size.stdout
+ 
+10:33:47 **** Incremental Build of configuration Debug for project baer_motor ****
+make -j16 all 
+arm-none-eabi-size   baer_motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  39168	    124	   3240	  42532	   a624	baer_motor.elf
+Finished building: default.size.stdout
+ 
+10:40:29 **** Incremental Build of configuration Debug for project baer_motor ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32H743xx -c -I../Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc -I../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32H7xx/Include -I../Drivers/CMSIS/Include -I"C:/Users/Danie/Desktop/SRI-embedded/LAN_9252 to H7/baer_motor_ethercat/baer_motor/lan9252" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c: In function 'get_motor_status':
+../Src/main.c:1034:6: warning: variable 'motor_msg' set but not used [-Wunused-but-set-variable]
+ 1034 |  int motor_msg[8];
+      |      ^~~~~~~~~
+arm-none-eabi-gcc -o "baer_motor.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Danie\Desktop\SRI-embedded\LAN_9252 to H7\baer_motor_ethercat\baer_motor\STM32H743VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="baer_motor.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: baer_motor.elf
+ 
+arm-none-eabi-size   baer_motor.elf 
+arm-none-eabi-objdump -h -S  baer_motor.elf  > "baer_motor.list"
+   text	   data	    bss	    dec	    hex	filename
+  39148	    124	   3240	  42512	   a610	baer_motor.elf
+Finished building: default.size.stdout
+ 
+Finished building: baer_motor.list
+ 
+10:40:32 **** Incremental Build of configuration Debug for project baer_motor ****
+make -j16 all 
+arm-none-eabi-size   baer_motor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  39148	    124	   3240	  42512	   a610	baer_motor.elf
+Finished building: default.size.stdout
+ 

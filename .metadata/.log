@@ -1290,3 +1290,60 @@ java.lang.Exception: Remote communication error.  Target disconnected.: No error
 
 !ENTRY org.eclipse.cdt.dsf 4 10005 2023-06-05 18:23:47.778
 !MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.gdb.internal.ui.actions.DsfTerminateCommand$3$1@4136aba7): Status OK: unknown code=0 OK' resulted in a rejected execution exception.
+
+!ENTRY org.eclipse.core.resources 4 566 2023-06-05 22:00:33.723
+!MESSAGE Workspace was not properly initialized or has already shutdown.
+!SESSION 2023-06-06 09:00:40.917 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-06-06 09:00:47.547
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-06-06 09:00:47.610
+!MESSAGE Log4j initialized with config file C:\Users\Danie\Desktop\SRI-embedded\LAN_9252 to H7\baer_motor_ethercat\.metadata\.log4j.xml
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 09:00:54.702
+!MESSAGE System property http.proxyHost is set to 127.0.0.1 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 09:00:54.704
+!MESSAGE System property http.proxyPort is set to 7890 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 09:00:54.705
+!MESSAGE System property https.proxyHost is set to 127.0.0.1 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 09:00:54.706
+!MESSAGE System property https.proxyPort is set to 7890 but should not be set.
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-06-06 09:00:57.096
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2023-06-06 10:46:18.726 -----------------------------------------------
+eclipse.buildId=Version 1.10.1
+java.version=11.0.14.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-06-06 10:46:28.673
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-06-06 10:46:28.746
+!MESSAGE Log4j initialized with config file C:\Users\Danie\Desktop\SRI-embedded\LAN_9252 to H7\baer_motor_ethercat\.metadata\.log4j.xml
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 10:46:33.604
+!MESSAGE System property http.proxyHost is set to 127.0.0.1 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 10:46:33.605
+!MESSAGE System property http.proxyPort is set to 7890 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 10:46:33.606
+!MESSAGE System property https.proxyHost is set to 127.0.0.1 but should not be set.
+
+!ENTRY org.eclipse.core.net 1 0 2023-06-06 10:46:33.606
+!MESSAGE System property https.proxyPort is set to 7890 but should not be set.
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-06-06 10:46:36.209
+!MESSAGE Started RMI Server, listening on port 41337

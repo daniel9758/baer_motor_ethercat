@@ -984,19 +984,19 @@ void control()
 
 		if (control_word == 1 && motor_init_state ==0 )
 		{
-			motor_zero(&joint_1, joint_1_data);
-			motor_zero(&joint_3, joint_3_data);
-			motor_zero(&joint_5, joint_5_data);
-			motor_zero(&joint_7, joint_7_data);
-			send_to_all_slave();
-			motor_init_state = 1;
+        motor_zero(&joint_1, joint_1_data);
+        motor_zero(&joint_3, joint_3_data);
+        motor_zero(&joint_5, joint_5_data);
+        motor_zero(&joint_7, joint_7_data);
+		send_to_all_slave();
+
+		motor_init_state = 1;
 		}
 
 	if (control_word == 1 && is_enable == 0)
-	//	if (control_word == 1)
-
 	{
 		// send enable cmd
+
 		motor_enable(&joint_1, joint_1_data);
 		speed_enable(&joint_2, joint_2_data);
 		motor_enable(&joint_3, joint_3_data);
@@ -1006,23 +1006,19 @@ void control()
 		motor_enable(&joint_7, joint_7_data);
 		speed_enable(&joint_8, joint_8_data);
 		send_to_all_slave();
-		
-		is_enable = 1;
-		//motor_init_state = 1;
-		//is_init = 1;
-	}
-	if (is_init)
-	{
-		return;
-	}
-	
 
-	
-	if (control_word == 1 && is_enable == 1 && motor_init_state == 1)
-	{
-		pack_motor_data();
-		send_to_all_slave();
+		is_enable = 1;
+		is_init = 1;
 	}
+	
+	if (control_word == 1 &&
+		is_enable == 1 &&
+		motor_init_state == 1 &&
+		is_init == 1)
+		{
+			pack_motor_data();
+			send_to_all_slave();
+		}
 
 }
 
